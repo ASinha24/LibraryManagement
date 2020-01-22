@@ -22,6 +22,7 @@ func main() {
 	flag.Parse()
 	router := mux.NewRouter().StrictSlash(true)
 	bookstore := bookStore.NewBookStore()
+	bookstore.Close()
 	bookService := LibraryManagementSystem.NewBookService(bookstore)
 	bookHandler := phttp.NewbookHandler(bookService, bookstore)
 	bookHandler.MuxInstaller(router)
